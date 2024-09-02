@@ -1,42 +1,62 @@
+/* a single type selector */
+/* all elements in the body (i.e. all elements that will be visible on the page) inherit the typography-based properties */
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* for each element targeted, only a single class selector is targeting it. Each selector separated by a comma is considered its own selector */
+/* semantically there is no difference if two rules identical to the following rule except for one having the selector .para and the other .small-para and */
+/* the following rule were to be removed */
 .para,
 .small-para {
   color: hsl(0, 0%, 0%);
   font-weight: 800;
 }
 
-.small-para {
+/* CHANGED! */
+/* a single class selector changed to a chaining selector composed of two class selectors */ 
+/* Two class selectors chained together have a higher specificity than chaining a class selector and a type selector */
+.para.small-para {
   font-size: 14px;
   font-weight: 800;
 }
 
-.para {
+/* a single class selector changed to a chaining selector made up of a type selector and a class selector */
+/* with the previous rule's selector change, this selector change has no effect but is done to demonstrate */
+/* a double class selector in a chaining selector has higher specificity than a type selector and a class selector chained together */ 
+p.para {
   font-size: 22px;
 }
 
-.confirm {
+/* CHANGED! */
+/* a single class selector changed to a more specific id selector */
+/* an id selector will result in the cascade choosing this style for the confirm button over the style with the subsequent less specific class selector */
+#confirm-button {
   background: green;
   color: white;
   font-weight: bold;
 } 
 
+/* a single class selector */
 .button {
   background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
   font-size: 20px;
 }
 
-.child {
-  color: rgb(0, 0, 0);
-  font-weight: 800;
-  font-size: 14px;
-}
-
+/* a type selector with two selectors, one is a type selector and the other a class selector */
 div.text {
   color: rgb(0, 0, 0);
   font-size: 22px;
   font-weight: 100;
+}
+
+/* CHANGED!*/
+/* a single class selector changed to a descendant combinator but having the same specificity as the selector div.text */
+/* each has a type selector and a class selector in the selector targeting the same element to have smaller and bolder text */
+/* This rule moved after the conflicting rule to have its style applied to the desired targeted element */
+div .child {
+  color: rgb(0, 0, 0);
+  font-weight: 800;
+  font-size: 14px;
 }
