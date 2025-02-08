@@ -6,18 +6,25 @@ body {
 
 .header {
   height: 72px;
+  min-width: 409px; /*added*/
   background: darkmagenta;
   color: white;
+  /*added*/
+  padding: 0 16px;
+  font-size: 32px;
+  font-weight: 900;
 }
 
 .footer {
   height: 72px;
   background: #eee;
   color: darkmagenta;
+  /*added*/
+  justify-content: center;
 }
 
 .sidebar {
-  width: 300px;
+  /* width: 300px; moved to grouping selector */ 
   background: royalblue;
   box-sizing: border-box;
 }
@@ -26,4 +33,58 @@ body {
   border: 1px solid #eee;
   box-shadow: 2px 4px 16px rgba(0,0,0,.06);
   border-radius: 4px;
+}
+
+
+/*added*/
+
+* {
+  box-sizing: border-box;
+}
+
+body, .header, .footer, .content, ul, .cards {
+  display: flex;
+}
+
+body, ul {
+  flex-direction: column;
+}
+
+.sidebar, .card {
+  padding: 16px;
+  width: 300px;
+}
+
+.sidebar {
+  flex: none;
+}
+
+.content {
+  flex: 1 0;
+}
+
+ul, .cards {
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.cards {
+  padding: 48px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  font-size: 24px;
+  color: white;
+  text-decoration: none;
+}
+
+.header, .footer {
+  flex: none;
+  align-items: center;
 }
